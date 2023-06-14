@@ -48,8 +48,12 @@ class _ChatUserCardState extends State<ChatUserCard> {
 
                 return ListTile(
                     leading: InkWell(
-                      onTap: (){
-                        showDialog(context: context, builder: (_) => ProfileDialog(chatUser: widget.user,));
+                      onTap: () {
+                        showDialog(
+                            context: context,
+                            builder: (_) => ProfileDialog(
+                                  chatUser: widget.user,
+                                ));
                       },
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(mq.height * 0.03),
@@ -66,7 +70,7 @@ class _ChatUserCardState extends State<ChatUserCard> {
                     ),
                     //user name
                     title: Text(widget.user.name),
-                    subtitle: _message!.type == Type.text
+                    subtitle: _message?.type == Type.text
                         ? Text(
                             _message != null
                                 ? _message!.msg
@@ -83,7 +87,7 @@ class _ChatUserCardState extends State<ChatUserCard> {
                     trailing: _message == null
                         ? null //show nothing when no message is sent
                         : _message!.read.isEmpty &&
-                                _message!.fromId != APIs.user!.uid
+                                _message?.fromId != APIs.user?.uid
                             ?
                             //show for unread message
                             Container(

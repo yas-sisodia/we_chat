@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:we_chat/api/apis.dart';
 import 'package:we_chat/helper/dialogs.dart';
+import 'package:we_chat/helper/my_date_util.dart';
 import 'package:we_chat/models/chat_user.dart';
 import '../main.dart';
 
@@ -35,7 +36,8 @@ class _HomeScreenState extends State<ViewProfileScreen> {
                   fontWeight: FontWeight.w500),
             ),
             Text(
-              widget.user.createdAt,
+              MyDateUtil.getLastActiveTime(
+                  context: context, lastActive: widget.user.createdAt),
               style: TextStyle(
                   color: Colors.black54,
                   fontSize: 16,
