@@ -1,5 +1,10 @@
+import 'dart:math';
+
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:we_chat/api/apis.dart';
 import 'package:we_chat/screens/home_screen.dart';
 
 import '../../main.dart';
@@ -23,11 +28,16 @@ class _HomeScreenState extends State<SplashScreen> {
       //exit full screen
       SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
       SystemChrome.setSystemUIOverlayStyle(
-          SystemUiOverlayStyle(statusBarColor: Colors.transparent));
-
-      //navigate to home
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (_) => LoginScreen()));
+          SystemUiOverlayStyle(statusBarColor: Colors.white));
+      if (APIs.auth.currentUser != null) {
+        // log('\nUser: ${FirebaseAuth.instance.currentUser}');
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (_) => const HomeScreen()));
+      } else {
+        //navigate to home
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (_) => LoginScreen()));
+      }
     });
   }
 
