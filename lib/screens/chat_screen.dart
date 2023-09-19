@@ -146,11 +146,11 @@ class _ChatScreenState extends State<ChatScreen> {
         child: StreamBuilder(
             stream: APIs.getUserInfo(widget.user),
             builder: ((context, snapshot) {
-              final data = snapshot.data!.docs;
+              if(snapshot.hasData){
+                final data = snapshot.data!.docs;
               final list =
                   data.map((e) => ChatUser.fromJson(e.data())).toList();
-
-              return Row(
+                  return Row(
                 children: [
                   //back button
                   IconButton(
@@ -210,6 +210,13 @@ class _ChatScreenState extends State<ChatScreen> {
                   )
                 ],
               );
+
+              }
+              else{
+                return SizedBox.shrink();
+              }
+              
+              
             })));
   }
 

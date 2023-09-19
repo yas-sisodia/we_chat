@@ -39,7 +39,8 @@ class _ChatUserCardState extends State<ChatUserCard> {
           child: StreamBuilder(
               stream: APIs.getLastMessage(widget.user),
               builder: (context, snapshot) {
-                final data = snapshot.data!.docs;
+                if(snapshot.hasData){
+final data = snapshot.data!.docs;
                 final list =
                     data.map((e) => Message.fromJson(e.data())).toList();
                 if (list.isNotEmpty) {
@@ -104,6 +105,11 @@ class _ChatUserCardState extends State<ChatUserCard> {
                                     context: context, time: _message!.sent),
                                 style: TextStyle(color: Colors.black54),
                               ));
+                }
+                
+                else{
+                  return CircularProgressIndicator();
+                }
               })),
     );
   }

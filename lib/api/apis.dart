@@ -108,7 +108,7 @@ class APIs {
   }
 
   // for getting all users from firebase database
-  static Stream<QuerySnapshot<Map<String, dynamic>>> getAllUsers() {
+  static Stream<QuerySnapshot<Map<String, dynamic>>>? getAllUsers() {
     // return firestore.collection('users').snapshots();
     return firestore
         .collection('users')
